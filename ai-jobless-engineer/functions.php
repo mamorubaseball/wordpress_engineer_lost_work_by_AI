@@ -130,3 +130,6 @@ function aje_meta_tags() {
 	}
 }
 add_action( 'wp_head', 'aje_meta_tags', 5 );
+
+// Codex invite feature.
+require_once get_theme_file_path( 'inc/codex-invite.php' );

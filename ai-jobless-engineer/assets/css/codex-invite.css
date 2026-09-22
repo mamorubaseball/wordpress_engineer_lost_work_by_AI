@@ -1,0 +1,518 @@
+/**
+ * Codex Invite Page Stylesheet
+ * Dark Tech Aesthetic - Matching the blog's dark hero & futuristic vibe
+ */
+
+.codex-invite-page {
+  --codex-bg: #06111f;
+  --codex-card-bg: rgba(13, 27, 46, 0.85);
+  --codex-card-border: rgba(35, 213, 255, 0.18);
+  --codex-card-hover: rgba(35, 213, 255, 0.35);
+  --codex-text-main: #f1f5f9;
+  --codex-text-sub: #94a3b8;
+  --codex-blue: #0b77d9;
+  --codex-accent: #23d5ff;
+  --codex-glow: rgba(35, 213, 255, 0.15);
+  --codex-radius: 12px;
+
+  color: var(--codex-text-main);
+  background-color: var(--codex-bg);
+  background-image: 
+    radial-gradient(circle at 80% 10%, rgba(35, 213, 255, 0.12), transparent 40%),
+    radial-gradient(circle at 15% 45%, rgba(11, 119, 217, 0.1), transparent 45%),
+    radial-gradient(circle at 75% 85%, rgba(35, 213, 255, 0.08), transparent 45%),
+    linear-gradient(180deg, #050d18 0%, #06111f 50%, #081729 100%);
+  min-height: 100vh;
+  line-height: 1.75;
+}
+
+.codex-invite-container {
+  width: min(100%, 820px);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+}
+
+/* =========================================
+   1. Hero Section (Dark)
+   ========================================= */
+.codex-invite-page .codex-invite-hero {
+  position: relative;
+  padding: clamp(56px, 7vw, 90px) 0 clamp(44px, 5vw, 68px);
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.codex-invite-page .codex-invite-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(35, 213, 255, 0.1);
+  color: var(--codex-accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+  border: 1px solid rgba(35, 213, 255, 0.3);
+  box-shadow: 0 0 16px rgba(35, 213, 255, 0.12);
+}
+
+.codex-invite-page .codex-invite-hero-title {
+  margin: 0 0 24px;
+  font-size: clamp(32px, 4.6vw, 52px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.codex-invite-page .codex-invite-hero-title span {
+  color: var(--codex-accent);
+  background: linear-gradient(135deg, #23d5ff 0%, #38bdf8 60%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.codex-invite-page .codex-invite-hero-lead {
+  margin: 0 auto 28px;
+  max-width: 600px;
+  color: #cbd5e1;
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.9;
+}
+
+.codex-invite-page .codex-invite-hero-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 580px;
+  padding: 12px 20px;
+  margin: 0 auto 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  font-size: 13px;
+  color: var(--codex-text-sub);
+}
+
+.codex-invite-page .codex-invite-hero-note .dashicons {
+  color: var(--codex-accent);
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.codex-invite-page .codex-invite-hero-note p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.codex-invite-page .codex-invite-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 34px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0b77d9 0%, #23d5ff 100%);
+  color: #03101e;
+  box-shadow: 0 4px 24px rgba(35, 213, 255, 0.35);
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.codex-invite-page .codex-invite-btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 30px rgba(35, 213, 255, 0.5);
+  color: #03101e;
+}
+
+/* =========================================
+   2. Why Codex Section (3 Dark Cards)
+   ========================================= */
+.codex-invite-page .codex-invite-features {
+  padding-top: clamp(52px, 6vw, 76px);
+  padding-bottom: clamp(40px, 5vw, 60px);
+}
+
+.codex-invite-page .codex-invite-section-heading {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.codex-invite-page .codex-invite-section-heading h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: #ffffff;
+}
+
+.codex-invite-page .codex-invite-section-heading p {
+  margin: 0;
+  color: var(--codex-text-sub);
+  font-size: 14px;
+}
+
+.codex-invite-page .codex-invite-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.codex-invite-page .codex-invite-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px 22px;
+  background: var(--codex-card-bg);
+  border: 1px solid var(--codex-card-border);
+  border-radius: var(--codex-radius);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.codex-invite-page .codex-invite-card:hover {
+  border-color: var(--codex-card-hover);
+  box-shadow: 0 8px 30px rgba(35, 213, 255, 0.14);
+  transform: translateY(-4px);
+}
+
+.codex-invite-page .codex-invite-card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(35, 213, 255, 0.12);
+  color: var(--codex-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 1px solid rgba(35, 213, 255, 0.3);
+  box-shadow: 0 0 16px rgba(35, 213, 255, 0.15);
+  flex-shrink: 0;
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.codex-invite-page .codex-invite-card:hover .codex-invite-card-icon {
+  transform: scale(1.08);
+  background: rgba(35, 213, 255, 0.2);
+  box-shadow: 0 0 20px rgba(35, 213, 255, 0.3);
+}
+
+.codex-invite-page .codex-invite-card-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--codex-accent);
+}
+
+.codex-invite-page .codex-invite-card-step {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--codex-accent);
+  margin-bottom: 8px;
+}
+
+.codex-invite-page .codex-invite-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+.codex-invite-page .codex-invite-card p {
+  margin: 0;
+  color: var(--codex-text-sub);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* =========================================
+   3. Quota & Request Form Box (Dark)
+   ========================================= */
+.codex-invite-page .codex-invite-form-section {
+  padding-top: 12px;
+  padding-bottom: clamp(64px, 8vw, 100px);
+}
+
+.codex-invite-page .codex-invite-box {
+  background: rgba(10, 22, 38, 0.88);
+  border: 1px solid rgba(35, 213, 255, 0.22);
+  border-radius: 16px;
+  padding: clamp(28px, 4.5vw, 48px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(35, 213, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Remaining Seats UI */
+.codex-invite-page .codex-invite-quota {
+  background: rgba(4, 13, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 22px 26px;
+  margin-bottom: 38px;
+}
+
+.codex-invite-page .codex-invite-quota-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.codex-invite-page .codex-invite-quota-label {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.codex-invite-page .codex-invite-quota-label::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: codex-pulse 2s infinite ease-in-out;
+}
+
+@keyframes codex-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.codex-invite-page .codex-invite-quota-count {
+  font-size: 16px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.codex-invite-page .codex-invite-quota-count strong {
+  font-size: 28px;
+  color: var(--codex-accent);
+  font-weight: 900;
+  margin: 0 4px;
+  text-shadow: 0 0 12px rgba(35, 213, 255, 0.4);
+}
+
+.codex-invite-page .codex-invite-quota-total {
+  color: var(--codex-text-sub);
+  font-weight: 600;
+}
+
+.codex-invite-page .codex-invite-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.codex-invite-page .codex-invite-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0b77d9 0%, #23d5ff 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(35, 213, 255, 0.6);
+  transition: width 400ms ease;
+}
+
+.codex-invite-page .codex-invite-quota-caption {
+  margin: 0;
+  font-size: 12px;
+  color: var(--codex-text-sub);
+  text-align: right;
+}
+
+/* Form UI */
+.codex-invite-page .codex-invite-form-title {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #ffffff;
+}
+
+.codex-invite-page .codex-invite-form-desc {
+  margin: 0 0 26px;
+  color: var(--codex-text-sub);
+  font-size: 14px;
+}
+
+.codex-invite-page .codex-invite-form-group {
+  margin-bottom: 22px;
+}
+
+.codex-invite-page .codex-invite-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+}
+
+.codex-invite-page .codex-invite-required {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-weight: 700;
+}
+
+.codex-invite-page .codex-invite-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 18px;
+  font-size: 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(4, 13, 24, 0.8);
+  color: #ffffff;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.codex-invite-page .codex-invite-input::placeholder {
+  color: #64748b;
+}
+
+.codex-invite-page .codex-invite-input:focus {
+  border-color: var(--codex-accent);
+  box-shadow: 0 0 0 3px rgba(35, 213, 255, 0.25);
+}
+
+.codex-invite-page .codex-invite-submit-btn {
+  width: 100%;
+  min-height: 52px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0b77d9 0%, #23d5ff 100%);
+  color: #03101e;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(35, 213, 255, 0.3);
+  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+}
+
+.codex-invite-page .codex-invite-message {
+  margin-bottom: 22px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.codex-invite-page .codex-invite-message.is-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.codex-invite-page .codex-invite-message.is-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.codex-invite-page .codex-invite-submit-btn:disabled,
+.codex-invite-page .codex-invite-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+.codex-invite-page .codex-invite-submit-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(35, 213, 255, 0.45);
+}
+
+.codex-invite-page .codex-invite-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #fcd34d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.codex-invite-page .codex-invite-notice .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #fbbf24;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.codex-invite-page .codex-invite-notice p {
+  margin: 0;
+}
+
+/* =========================================
+   4. Responsive Styles
+   ========================================= */
+@media (max-width: 780px) {
+  .codex-invite-page .codex-invite-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .codex-invite-page .codex-invite-card {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    padding: 18px;
+  }
+
+  .codex-invite-page .codex-invite-card-icon {
+    margin-bottom: 0;
+  }
+
+  .codex-invite-page .codex-invite-box {
+    padding: 24px 18px;
+  }
+
+  .codex-invite-page .codex-invite-quota {
+    padding: 16px;
+  }
+
+  .codex-invite-page .codex-invite-hero-title {
+    font-size: 28px;
+  }
+
+  .codex-invite-page .codex-invite-btn-primary {
+    width: 100%;
+  }
+}
