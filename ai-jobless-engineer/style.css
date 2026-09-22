@@ -5,7 +5,7 @@ Description: AI時代のエンジニア向けブランドメディア用ブロ�
 Requires at least: 6.5
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.3.6
+Version: 1.3.7
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ai-jobless-engineer
@@ -209,7 +209,7 @@ img {
 
 .aje-side-profile {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   margin-top: auto;
   padding: 14px 8px 0;
   border-top: 1px solid var(--wp--preset--color--line);
@@ -218,12 +218,50 @@ img {
   line-height: 1.55;
 }
 
-.aje-side-profile strong {
+.aje-side-profile-names {
   color: var(--wp--preset--color--ink);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
-.aje-side-profile p {
-  margin: 0;
+.aje-side-profile-names strong {
+  font-size: 13px;
+  font-weight: 900;
+  color: #0b192c;
+}
+
+.aje-side-profile-sep {
+  color: #94a3b8;
+  margin: 0 2px;
+}
+
+.aje-side-profile-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.aje-side-profile-role {
+  margin: 0 !important;
+  color: #64748b;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.aje-side-profile-desc {
+  margin: 0 !important;
+  color: var(--wp--preset--color--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.aje-side-profile a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.aje-side-profile a:hover {
+  color: var(--wp--preset--color--blue);
 }
 
 .aje-side-avatar {
@@ -237,11 +275,20 @@ img {
 
 .aje-social-row {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-top: 4px;
   color: var(--wp--preset--color--ink);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
+}
+
+.aje-social-row a {
+  color: #24364c;
+  text-decoration: none;
+}
+
+.aje-social-row a:hover {
+  color: #0b77d9;
 }
 
 .aje-mobile-header {
@@ -1236,25 +1283,29 @@ img {
 }
 
 .aje-author-body {
-  padding: 0 18px 20px;
+  padding: 0 16px 18px;
+  background: #ffffff;
 }
 
 .aje-author-header {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 12px;
-  margin-top: -34px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+  position: relative;
 }
 
 .aje-author-avatar-wrap {
   flex-shrink: 0;
+  margin-top: -38px;
+  position: relative;
+  z-index: 2;
 }
 
 .aje-author-avatar {
   display: block;
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   border: 3px solid #ffffff;
   border-radius: 50%;
   background: url("assets/images/hero-editorial-v2.jpg") 72% 35% / 370% auto;
@@ -1264,16 +1315,17 @@ img {
 .aje-author-intro {
   flex: 1 1 auto;
   min-width: 0;
-  padding-bottom: 2px;
+  padding-top: 8px; /* カバー画像の下端（白背景）から開始し、絶対に上に被らない */
 }
 
 .aje-author-name {
   margin: 0;
-  color: #0f172a;
-  font-size: 13.5px;
+  color: #0b192c;
+  font-size: 13px;
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.4;
   letter-spacing: -0.01em;
+  word-break: break-word;
 }
 
 .aje-author-name strong {
@@ -1283,19 +1335,21 @@ img {
 }
 
 .aje-author-sep {
-  color: #cbd5e1;
-  font-weight: 300;
+  color: #94a3b8;
+  font-weight: 400;
   margin: 0 2px;
+}
+
+.aje-author-title {
+  color: #1e293b;
+  font-size: 12.5px;
 }
 
 .aje-author-tagline {
   margin: 3px 0 0;
   color: #64748b;
-  font-size: 11.5px;
+  font-size: 11px;
   line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .aje-author-divider {
