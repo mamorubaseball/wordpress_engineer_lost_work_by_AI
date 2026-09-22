@@ -1,0 +1,19 @@
+<!-- wp:group {"className":"aje-main-with-sidebar","layout":{"type":"default"}} -->
+<div class="wp-block-group aje-main-with-sidebar">
+  <!-- wp:template-part {"slug":"mobile-header","tagName":"div"} /-->
+  <!-- wp:template-part {"slug":"sidebar","tagName":"div"} /-->
+  <!-- wp:group {"className":"aje-content","layout":{"type":"default"}} --><div class="wp-block-group aje-content">
+    <!-- wp:group {"tagName":"main","className":"aje-section","layout":{"type":"default"}} --><main class="wp-block-group aje-section">
+      <!-- wp:group {"className":"aje-section-inner","layout":{"type":"default"}} --><div class="wp-block-group aje-section-inner">
+        <!-- wp:group {"className":"aje-section-heading","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} --><div class="wp-block-group aje-section-heading"><!-- wp:heading {"level":1} --><h1 class="wp-block-heading">記事一覧</h1><!-- /wp:heading --><!-- wp:paragraph --><p>AI時代を生きるための実践記録。</p><!-- /wp:paragraph --></div><!-- /wp:group -->
+        <!-- wp:query {"queryId":3,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
+        <div class="wp-block-query"><!-- wp:post-template {"className":"aje-post-grid"} -->
+          <!-- wp:group {"className":"aje-post-card","layout":{"type":"default"}} --><div class="wp-block-group aje-post-card"><!-- wp:post-featured-image {"isLink":true} /--><!-- wp:group {"className":"aje-post-card-body","layout":{"type":"default"}} --><div class="wp-block-group aje-post-card-body"><!-- wp:post-terms {"term":"category","fontSize":"small"} /--><!-- wp:post-title {"isLink":true,"level":2} /--><!-- wp:post-excerpt {"moreText":""} /--><!-- wp:post-date {"fontSize":"small"} /--></div><!-- /wp:group --></div><!-- /wp:group -->
+        <!-- /wp:post-template --><!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} --><!-- wp:query-pagination-previous /--><!-- wp:query-pagination-numbers /--><!-- wp:query-pagination-next /--><!-- /wp:query-pagination --><!-- wp:query-no-results --><p>記事が見つかりませんでした。</p><!-- /wp:query-no-results --></div>
+        <!-- /wp:query -->
+      </div><!-- /wp:group -->
+    </main><!-- /wp:group -->
+    <!-- wp:template-part {"slug":"footer","tagName":"div"} /-->
+  </div><!-- /wp:group -->
+</div>
+<!-- /wp:group -->
