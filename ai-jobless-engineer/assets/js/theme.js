@@ -35,6 +35,33 @@
     syncSidebar();
   }
 
+  // Submenu accordion / toggle logic
+  const navGroups = document.querySelectorAll('.aje-nav-group');
+  navGroups.forEach(function (group) {
+    const parentLink = group.querySelector(':scope > a');
+    const subnav = group.querySelector('.aje-subnav');
+
+    if (parentLink && subnav) {
+      // Add toggle arrow indicator
+      const arrow = document.createElement('span');
+      arrow.className = 'aje-nav-arrow dashicons dashicons-arrow-down-alt2';
+      arrow.setAttribute('aria-hidden', 'true');
+      parentLink.appendChild(arrow);
+
+      // Check if active
+      const hasCurrent = subnav.querySelector('.is-current') || parentLink.classList.contains('is-current');
+      if (hasCurrent) {
+        group.classList.add('is-expanded');
+      }
+
+      parentLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        const isExpanded = group.classList.toggle('is-expanded');
+        parentLink.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      });
+    }
+  });
+
   const toc = document.querySelector('[data-aje-toc]');
   const prose = document.querySelector('.aje-prose');
 

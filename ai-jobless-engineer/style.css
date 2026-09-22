@@ -5,7 +5,7 @@ Description: AI時代のエンジニア向けブランドメディア用ブロ�
 Requires at least: 6.5
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.3.1
+Version: 1.3.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ai-jobless-engineer
@@ -131,17 +131,43 @@ img {
   margin-top: 4px;
 }
 
+.aje-side-nav .aje-nav-group > a {
+  justify-content: space-between;
+}
+
+.aje-side-nav .aje-nav-group > a > span:first-child {
+  margin-right: -4px;
+}
+
+.aje-side-nav .aje-nav-arrow {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+  color: var(--wp--preset--color--muted);
+  transition: transform 200ms ease;
+}
+
+.aje-side-nav .aje-nav-group.is-expanded .aje-nav-arrow {
+  transform: rotate(180deg);
+}
+
 .aje-side-nav .aje-subnav {
+  display: none;
   gap: 0;
-  margin: 0 0 4px 19px;
+  margin: 2px 0 6px 20px;
   padding-left: 10px;
-  border-left: 1px solid var(--wp--preset--color--line);
+  border-left: 2px solid var(--wp--preset--color--line);
+}
+
+.aje-side-nav .aje-nav-group.is-expanded .aje-subnav {
+  display: grid;
 }
 
 .aje-side-nav .aje-subnav a {
-  padding: 3px 8px;
+  padding: 4px 8px;
   color: var(--wp--preset--color--muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
 }
 
