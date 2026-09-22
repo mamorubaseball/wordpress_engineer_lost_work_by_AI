@@ -71,13 +71,13 @@
     }
   },
   "templateParts": [
+    { "name": "article-header", "title": "Article Header", "area": "header" },
     { "name": "mobile-header", "title": "Mobile Header", "area": "header" },
     { "name": "sidebar", "title": "Sidebar", "area": "uncategorized" },
     { "name": "footer", "title": "Footer", "area": "footer" }
   ],
   "customTemplates": [
     { "name": "page-products", "title": "Products Page", "postTypes": [ "page" ] },
-    { "name": "single-product", "title": "Single Product", "postTypes": [ "product" ] },
-    { "name": "page-codex-invite", "title": "Codex Invite", "postTypes": [ "page" ] }
+    { "name": "single-product", "title": "Single Product", "postTypes": [ "product" ] }
   ]
 }

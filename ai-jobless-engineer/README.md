@@ -2,6 +2,10 @@
 
 `ai-jobless-engineer` は「AIで仕事がなくなるエンジニア」向けの独自WordPressブロックテーマです。
 
+バージョン1.3.4では、提供された記事デザインに合わせて白い記事ヘッダー、680pxの本文カラム、著者・自動目次・関連記事の右カラムを追加しました。記事ヘッダーに「ブログをはじめる」ボタンは表示しません。PCサイドバーの各メニューは開閉でき、Codex招待ページの受付・管理者通知・再送機能も同梱しています。
+
+テーマ有効化後に「外観 > テーマ初期設定」から見本記事の作成を実行すると、ホーム画面用の4カテゴリーと9記事を一括登録できます。同名記事がある場合、その本文は上書きしません。
+
 ## 実装方針
 
 - トップページはB寄りのダーク/濃紺ベースで、水色アクセントを使ったブランド体験にする。
@@ -21,7 +25,10 @@ ai-jobless-engineer/
 ├─ style.css
 ├─ functions.php
 ├─ index.php（古いインストーラー向けの互換フォールバック）
+├─ page-codex-invite.php
 ├─ theme.json
+├─ inc/
+│  └─ codex-invite.php
 ├─ templates/
 │  ├─ front-page.html
 │  ├─ index.html
@@ -30,6 +37,7 @@ ai-jobless-engineer/
 │  ├─ archive.html
 │  ├─ archive-product.html
 │  ├─ page.html
+│  ├─ page-codex-invite.html
 │  ├─ page-products.html
 │  ├─ single-product.html
 │  └─ 404.html
@@ -39,10 +47,13 @@ ai-jobless-engineer/
 │  └─ footer.html
 ├─ patterns/
 │  ├─ note-cta.php
+│  ├─ codex-invite.php
 │  └─ profile.php
 └─ assets/
    ├─ images/hero-final.jpg
    ├─ images/cta-final.jpg
+   ├─ css/codex-invite.css
+   ├─ js/codex-invite.js
    └─ js/theme.js
 ```
 
@@ -90,5 +101,9 @@ PC版トップの完成画像は `assets/images/hero-final.jpg`、下部CTAは `
 ### 注目記事
 
 トップの `PICK UP` はWordPressの固定表示投稿を自動取得します。投稿編集画面の `投稿 > 概要（またはステータス）` で `ブログのトップに固定` をオンにしてください。投稿一覧の `クイック編集 > この投稿を先頭に固定` からも設定できます。最大3件を表示します。
+
+### Codex招待メール
+
+申請は `Codex招待` の一覧へ保存され、管理者メールアドレスへ通知されます。通知を再送する場合は `Codex招待 > Codex招待` を開き、対象行の `通知メールを再送` を押します。送信結果は画面上に表示されます。実際に公式招待を送った後だけ `招待済みにする` を押してください。この操作で残り枠が1減ります。
 
 最終成果物は `dist/ai-jobless-engineer.zip` です。

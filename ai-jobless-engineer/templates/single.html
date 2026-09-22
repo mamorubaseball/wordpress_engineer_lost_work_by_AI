@@ -1,29 +1,30 @@
-<!-- wp:group {"className":"aje-main-with-sidebar","layout":{"type":"default"}} -->
-<div class="wp-block-group aje-main-with-sidebar">
-  <!-- wp:template-part {"slug":"mobile-header","tagName":"div"} /-->
-  <!-- wp:template-part {"slug":"sidebar","tagName":"div"} /-->
-  <!-- wp:group {"className":"aje-content","layout":{"type":"default"}} --><div class="wp-block-group aje-content">
-    <!-- wp:group {"tagName":"main","className":"aje-article-layout","layout":{"type":"default"}} --><main class="wp-block-group aje-article-layout">
-      <!-- wp:group {"tagName":"article","className":"aje-article-main","layout":{"type":"default"}} --><article class="wp-block-group aje-article-main">
-        <!-- wp:group {"tagName":"header","className":"aje-article-header","layout":{"type":"default"}} --><header class="wp-block-group aje-article-header">
-          <!-- wp:post-terms {"term":"category","fontSize":"small"} /-->
-          <!-- wp:post-title {"level":1} /-->
-          <!-- wp:group {"className":"aje-meta","layout":{"type":"flex","flexWrap":"wrap"}} --><div class="wp-block-group aje-meta"><!-- wp:post-date /--><!-- wp:shortcode -->[aje_reading_time]<!-- /wp:shortcode --></div><!-- /wp:group -->
-        </header><!-- /wp:group -->
-        <!-- wp:post-featured-image {"align":"wide"} /-->
-        <!-- wp:post-content {"className":"aje-prose","layout":{"type":"constrained"}} /-->
-        <!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->
-        <!-- wp:post-terms {"term":"post_tag"} /-->
-        <!-- wp:pattern {"slug":"ai-jobless-engineer/note-cta"} /-->
-        <!-- wp:comments --><div class="wp-block-comments"><!-- wp:comments-title /--><!-- wp:comment-template --><!-- wp:comment-author-name /--><!-- wp:comment-date /--><!-- wp:comment-content /--><!-- wp:comment-reply-link /--><!-- /wp:comment-template --><!-- wp:post-comments-form /--></div><!-- /wp:comments -->
-      </article><!-- /wp:group -->
-      <!-- wp:group {"tagName":"aside","className":"aje-article-aside","layout":{"type":"default"}} --><aside class="wp-block-group aje-article-aside">
-        <!-- wp:html --><nav class="aje-toc" aria-label="この記事の目次" data-aje-toc hidden><span class="aje-toc-title">目次</span><ol></ol></nav><!-- /wp:html -->
-        <!-- wp:spacer {"height":"16px"} --><div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div><!-- /wp:spacer -->
-        <!-- wp:pattern {"slug":"ai-jobless-engineer/profile"} /-->
-      </aside><!-- /wp:group -->
-    </main><!-- /wp:group -->
-    <!-- wp:template-part {"slug":"footer","tagName":"div"} /-->
-  </div><!-- /wp:group -->
+<!-- wp:group {"className":"aje-article-page","layout":{"type":"default"}} -->
+<div class="wp-block-group aje-article-page">
+  <!-- wp:html -->
+  <header class="aje-article-site-header"><div class="aje-article-site-header-inner"><a class="aje-article-logo" href="/" aria-label="AIで仕事がなくなるエンジニア ホーム"><strong>AIで<br>仕事がなくなる<br>エンジニア</strong><span aria-hidden="true"></span></a><nav class="aje-article-nav" aria-label="メインナビゲーション"><a href="/">ホーム</a><a href="/category/ai-tools/">AIツール</a><a href="/category/development-product/">開発・プロダクト</a><a href="/category/career-work/">キャリア・働き方</a><a href="/category/lifestyle/">ライフスタイル</a></nav><a class="aje-article-search" href="/?s=" aria-label="記事を検索"><span class="dashicons dashicons-search" aria-hidden="true"></span></a></div></header>
+  <!-- /wp:html -->
+  <!-- wp:group {"tagName":"main","className":"aje-article-layout","layout":{"type":"default"}} --><main class="wp-block-group aje-article-layout">
+    <!-- wp:group {"tagName":"article","className":"aje-article-main","layout":{"type":"default"}} --><article class="wp-block-group aje-article-main">
+      <!-- wp:shortcode -->[aje_breadcrumbs]<!-- /wp:shortcode -->
+      <!-- wp:group {"tagName":"header","className":"aje-article-header","layout":{"type":"default"}} --><header class="wp-block-group aje-article-header">
+        <!-- wp:group {"className":"aje-meta","layout":{"type":"flex","flexWrap":"wrap"}} --><div class="wp-block-group aje-meta"><!-- wp:post-date /--><!-- wp:post-terms {"term":"category","fontSize":"small"} /--><!-- wp:shortcode -->[aje_reading_time]<!-- /wp:shortcode --></div><!-- /wp:group -->
+        <!-- wp:post-title {"level":1} /-->
+        <!-- wp:post-excerpt {"className":"aje-article-lead","moreText":""} /-->
+      </header><!-- /wp:group -->
+      <!-- wp:post-featured-image {"className":"aje-article-featured"} /-->
+      <!-- wp:shortcode -->[aje_share_bar]<!-- /wp:shortcode -->
+      <!-- wp:post-content {"className":"aje-prose","layout":{"type":"constrained"}} /-->
+      <!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->
+      <!-- wp:post-terms {"term":"post_tag"} /-->
+      <!-- wp:pattern {"slug":"ai-jobless-engineer/note-cta"} /-->
+      <!-- wp:comments --><div class="wp-block-comments"><!-- wp:comments-title /--><!-- wp:comment-template --><!-- wp:comment-author-name /--><!-- wp:comment-date /--><!-- wp:comment-content /--><!-- wp:comment-reply-link /--><!-- /wp:comment-template --><!-- wp:post-comments-form /--></div><!-- /wp:comments -->
+    </article><!-- /wp:group -->
+    <!-- wp:group {"tagName":"aside","className":"aje-article-aside","layout":{"type":"default"}} --><aside class="wp-block-group aje-article-aside">
+      <!-- wp:html --><section class="aje-author-card"><h2>この記事の著者</h2><div class="aje-author-summary"><span class="aje-side-avatar" aria-hidden="true"></span><div><strong>たぶん</strong><p>AI時代を前向きに生きるエンジニア。AI・開発・キャリア・暮らしをテーマに発信しています。</p></div></div><div class="aje-author-social" aria-label="SNSリンク"><a href="#" aria-label="X">X</a><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="YouTube">▶</a><a href="/contact/" aria-label="お問い合わせ">✉</a></div><a class="aje-follow-button" href="/profile/">プロフィールを見る</a></section><!-- /wp:html -->
+      <!-- wp:html --><nav class="aje-toc" aria-label="この記事の目次" data-aje-toc hidden><span class="aje-toc-title">目次</span><ol></ol></nav><!-- /wp:html -->
+      <!-- wp:shortcode -->[aje_related_posts]<!-- /wp:shortcode -->
+    </aside><!-- /wp:group -->
+  </main><!-- /wp:group -->
+  <!-- wp:template-part {"slug":"footer","tagName":"div"} /-->
 </div>
 <!-- /wp:group -->

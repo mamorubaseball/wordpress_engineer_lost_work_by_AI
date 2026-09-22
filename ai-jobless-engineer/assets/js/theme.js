@@ -35,31 +35,41 @@
     syncSidebar();
   }
 
-  // Submenu accordion / toggle logic
-  const navGroups = document.querySelectorAll('.aje-nav-group');
-  navGroups.forEach(function (group) {
-    const parentLink = group.querySelector(':scope > a');
-    const subnav = group.querySelector('.aje-subnav');
+  document.querySelectorAll('.aje-nav-group').forEach(function (group, index) {
+    let button = group.querySelector('.aje-nav-toggle');
 
-    if (parentLink && subnav) {
-      // Add toggle arrow indicator
-      const arrow = document.createElement('span');
-      arrow.className = 'aje-nav-arrow dashicons dashicons-arrow-down-alt2';
-      arrow.setAttribute('aria-hidden', 'true');
-      parentLink.appendChild(arrow);
+    if (!button) {
+      const link = group.querySelector(':scope > a');
+      if (!link) return;
 
-      // Check if active
-      const hasCurrent = subnav.querySelector('.is-current') || parentLink.classList.contains('is-current');
-      if (hasCurrent) {
-        group.classList.add('is-expanded');
+      const heading = document.createElement('div');
+      heading.className = 'aje-nav-group-head';
+      link.parentNode.insertBefore(heading, link);
+      heading.appendChild(link);
+
+      button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'aje-nav-toggle';
+      button.setAttribute('aria-expanded', 'true');
+      button.setAttribute('aria-label', link.textContent.trim() + 'のメニューを開閉');
+      button.innerHTML = '<span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></span>';
+      heading.appendChild(button);
+
+      const subnav = group.querySelector(':scope > .aje-subnav');
+      if (subnav) {
+        if (!subnav.id) subnav.id = 'aje-subnav-generated-' + (index + 1);
+        button.setAttribute('aria-controls', subnav.id);
       }
-
-      parentLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        const isExpanded = group.classList.toggle('is-expanded');
-        parentLink.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-      });
+      group.classList.add('is-expanded');
     }
+
+    button.addEventListener('click', function () {
+      const group = button.closest('.aje-nav-group');
+      if (!group) return;
+
+      const expanded = group.classList.toggle('is-expanded');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    });
   });
 
   const toc = document.querySelector('[data-aje-toc]');
@@ -86,5 +96,18 @@
     if (headings.length > 1) {
       toc.hidden = false;
     }
+  }
+
+  const copyButton = document.querySelector('[data-aje-copy-url]');
+
+  if (copyButton && navigator.clipboard) {
+    copyButton.addEventListener('click', function () {
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        const status = document.querySelector('.aje-copy-status');
+        if (status) {
+          status.textContent = 'URLをコピーしました';
+        }
+      });
+    });
   }
 })();

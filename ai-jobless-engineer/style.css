@@ -5,7 +5,7 @@ Description: AI時代のエンジニア向けブランドメディア用ブロ�
 Requires at least: 6.5
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.3.2
+Version: 1.3.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ai-jobless-engineer
@@ -131,43 +131,57 @@ img {
   margin-top: 4px;
 }
 
-.aje-side-nav .aje-nav-group > a {
-  justify-content: space-between;
+.aje-nav-group-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  align-items: center;
 }
 
-.aje-side-nav .aje-nav-group > a > span:first-child {
-  margin-right: -4px;
+.aje-nav-group-head > a {
+  min-width: 0;
 }
 
-.aje-side-nav .aje-nav-arrow {
-  margin-left: auto;
-  width: 16px;
-  height: 16px;
-  font-size: 14px;
+.aje-nav-toggle {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
   color: var(--wp--preset--color--muted);
-  transition: transform 200ms ease;
+  cursor: pointer;
 }
 
-.aje-side-nav .aje-nav-group.is-expanded .aje-nav-arrow {
-  transform: rotate(180deg);
+.aje-nav-toggle:hover,
+.aje-nav-toggle:focus-visible {
+  background: var(--wp--preset--color--soft-blue);
+  color: var(--wp--preset--color--blue);
+}
+
+.aje-nav-toggle .dashicons {
+  transition: transform 160ms ease;
+}
+
+.aje-nav-group:not(.is-expanded) .aje-nav-toggle .dashicons {
+  transform: rotate(-90deg);
 }
 
 .aje-side-nav .aje-subnav {
-  display: none;
   gap: 0;
-  margin: 2px 0 6px 20px;
+  margin: 0 0 4px 19px;
   padding-left: 10px;
-  border-left: 2px solid var(--wp--preset--color--line);
+  border-left: 1px solid var(--wp--preset--color--line);
 }
 
-.aje-side-nav .aje-nav-group.is-expanded .aje-subnav {
-  display: grid;
+.aje-nav-group:not(.is-expanded) .aje-subnav {
+  display: none;
 }
 
 .aje-side-nav .aje-subnav a {
-  padding: 4px 8px;
+  padding: 3px 8px;
   color: var(--wp--preset--color--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -469,28 +483,43 @@ img {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.aje-post-grid > *,
+.aje-latest-grid > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+}
+
 .aje-latest-grid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 12px;
 }
 
 .aje-latest-grid .aje-post-card-body {
-  gap: 5px;
   padding: 10px 8px 12px;
+  gap: 6px;
 }
 
-.aje-latest-grid .wp-block-post-title {
-  font-size: 14px;
+.aje-latest-grid .wp-block-post-title,
+.aje-latest-grid h3 {
+  font-size: 13px;
   line-height: 1.45;
+  min-height: 2.9em;
 }
 
-.aje-latest-grid .wp-block-post-excerpt {
-  display: none;
-}
-
-.aje-latest-grid .wp-block-post-date,
 .aje-latest-grid .wp-block-post-terms {
+  font-size: 10px !important;
+}
+
+.aje-latest-grid .wp-block-post-terms a {
+  font-size: 10px;
+  padding: 2px 6px;
+}
+
+.aje-latest-grid .wp-block-post-date {
   font-size: 11px !important;
+  padding-top: 4px;
 }
 
 .aje-cta-art {
@@ -611,37 +640,124 @@ img {
 }
 
 .aje-post-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
   overflow: hidden;
+  border: 1px solid var(--wp--preset--color--line);
+  border-radius: 8px;
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aje-post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(11, 119, 217, 0.08);
 }
 
 .aje-post-card .wp-block-post-featured-image {
   aspect-ratio: 16 / 9;
   background: var(--wp--preset--color--soft-blue);
-  margin: 0;
+  margin: 0 !important;
+  margin-block: 0 !important;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.aje-post-card .wp-block-post-featured-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .aje-post-card .wp-block-post-featured-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.aje-post-card:hover .wp-block-post-featured-image img {
+  transform: scale(1.03);
+}
+
+/* 画像直下の不要なブロックギャップ・マージンを完全リセット（赤枠上部の余白削除） */
+.aje-post-card .wp-block-post-featured-image + *,
+.aje-post-card > .aje-post-card-body,
+.aje-post-card > * + * {
+  margin-top: 0 !important;
+  margin-block-start: 0 !important;
 }
 
 .aje-post-card-body {
-  display: grid;
-  gap: 10px;
-  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 8px;
+  padding: 14px 16px 16px;
 }
 
+/* カテゴリタグ */
+.aje-post-card .wp-block-post-terms {
+  margin: 0 !important;
+  margin-block: 0 !important;
+  line-height: 1;
+}
+
+.aje-post-card .wp-block-post-terms a {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--wp--preset--color--soft-blue, #eaf8ff);
+  color: var(--wp--preset--color--blue, #0b77d9);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+/* タイトル：2行で高さを揃えて配列を整列 */
+.aje-post-card .wp-block-post-title,
 .aje-post-card h3 {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.55;
+  margin: 0 !important;
+  margin-block: 0 !important;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+  color: var(--wp--preset--color--ink, #111827);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3em;
 }
 
+.aje-post-card .wp-block-post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.aje-post-card .wp-block-post-title a:hover {
+  color: var(--wp--preset--color--blue, #0b77d9);
+}
+
+/* 抜粋文の削除（赤枠下部） */
 .aje-post-card .wp-block-post-excerpt {
-  color: var(--wp--preset--color--muted);
-  font-size: 14px;
-  line-height: 1.75;
+  display: none !important;
+}
+
+/* 日付：カード最下部に底揃え */
+.aje-post-card .wp-block-post-date {
+  margin-top: auto !important;
+  margin-block: 0 !important;
+  padding-top: 6px;
+  color: var(--wp--preset--color--muted, #64748b);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .aje-fallback-post {
@@ -811,6 +927,441 @@ img {
   text-align: center;
 }
 
+/* Reading experience */
+.aje-article-page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.aje-article-site-header {
+  border-bottom: 1px solid #e7edf5;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.aje-article-site-header-inner {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 30px;
+  width: min(100% - 48px, 1180px);
+  min-height: 98px;
+  margin: 0 auto;
+}
+
+.aje-article-logo {
+  position: relative;
+  display: inline-block;
+  color: #07111f;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.03;
+  text-decoration: none;
+  transform: rotate(-3deg);
+}
+
+.aje-article-logo span {
+  position: absolute;
+  right: 5px;
+  bottom: -7px;
+  width: 63px;
+  height: 4px;
+  background: #1690ff;
+  transform: rotate(-7deg);
+}
+
+.aje-article-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 34px);
+}
+
+.aje-article-nav a {
+  color: #20324b;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.aje-article-nav a:hover,
+.aje-article-nav a:focus-visible {
+  color: #087ef0;
+}
+
+.aje-article-search {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: #20324b;
+  text-decoration: none;
+}
+
+.aje-article-search .dashicons {
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+}
+
+.aje-article-page .aje-article-layout {
+  grid-template-columns: minmax(0, 680px) minmax(260px, 300px);
+  gap: clamp(34px, 5vw, 72px);
+  width: min(100% - 48px, 1100px);
+  padding: 34px 0 84px;
+}
+
+.aje-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 28px;
+  color: #50627a;
+  font-size: 13px;
+}
+
+.aje-breadcrumbs a {
+  color: #50627a;
+  text-decoration: none;
+}
+
+.aje-breadcrumbs span[aria-current="page"] {
+  overflow: hidden;
+  max-width: 360px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aje-article-page .aje-article-header {
+  margin-bottom: 28px;
+}
+
+.aje-article-page .aje-article-header h1 {
+  margin: 18px 0 12px;
+  color: #0d1b30;
+  font-size: clamp(32px, 4.2vw, 44px);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.aje-article-page .aje-meta {
+  gap: 14px;
+  color: #41536b;
+}
+
+.aje-article-page .wp-block-post-terms a {
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: #eaf6ff;
+  color: #087ef0;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.aje-article-lead,
+.aje-article-lead .wp-block-post-excerpt__excerpt {
+  margin: 0;
+  color: #40536b;
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.aje-article-featured {
+  aspect-ratio: 16 / 9;
+  margin: 0 0 18px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #eef6ff;
+}
+
+.aje-article-featured img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aje-share-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid #e8eef5;
+}
+
+.aje-share-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aje-share-links a,
+.aje-share-links button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #20324b;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.aje-copy-status {
+  color: #087ef0;
+  font-size: 12px;
+}
+
+.aje-article-page .aje-prose {
+  color: #2c4058;
+  font-size: 17px;
+  line-height: 1.95;
+}
+
+.aje-article-page .aje-prose h2 {
+  margin-top: 2.4em;
+  border-bottom: 2px solid #2392ff;
+  color: #0d1b30;
+  font-size: 27px;
+}
+
+.aje-article-page .aje-prose h3 {
+  color: #0d1b30;
+}
+
+.aje-prose .aje-numbered-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 17px;
+}
+
+.aje-prose .aje-numbered-heading > span {
+  color: #168bff;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.aje-prose .aje-points-box {
+  margin: 30px 0 42px;
+  padding: 19px 24px;
+  border-radius: 7px;
+  background: #f1f9ff;
+}
+
+.aje-prose .aje-points-box h3 {
+  margin: 0 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d8e7f4;
+  font-size: 19px;
+}
+
+.aje-prose .aje-points-box ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aje-prose .aje-points-box li {
+  position: relative;
+  margin: 0;
+  padding: 9px 0 9px 37px;
+  border-bottom: 1px solid #dfeaf4;
+}
+
+.aje-prose .aje-points-box li::before {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #168bff;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.aje-article-page .aje-prose blockquote {
+  position: relative;
+  margin: 28px 0;
+  padding: 20px 24px 20px 76px;
+  border: 0;
+  border-radius: 7px;
+  background: #f0f8ff;
+}
+
+.aje-article-page .aje-prose blockquote::before {
+  content: "“";
+  position: absolute;
+  top: 8px;
+  left: 25px;
+  color: #168bff;
+  font-size: 58px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.aje-article-page .aje-article-aside {
+  display: grid;
+  gap: 18px;
+  top: 24px;
+}
+
+.aje-author-card,
+.aje-article-page .aje-toc,
+.aje-related-box {
+  border: 1px solid #e4ebf2;
+  border-radius: 7px;
+  background: #ffffff;
+  padding: 21px;
+}
+
+.aje-author-card h2,
+.aje-related-box h2 {
+  margin: 0 0 18px;
+  color: #0d1b30;
+  font-size: 19px;
+}
+
+.aje-author-summary {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: start;
+  gap: 13px;
+}
+
+.aje-author-summary .aje-side-avatar {
+  width: 58px;
+  height: 58px;
+}
+
+.aje-author-summary strong {
+  color: #17263b;
+}
+
+.aje-author-summary p {
+  margin: 5px 0 0;
+  color: #52647b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.aje-author-social {
+  display: flex;
+  justify-content: space-around;
+  margin: 18px 0;
+}
+
+.aje-author-social a {
+  color: #233750;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.aje-follow-button {
+  display: block;
+  border: 1px solid #168bff;
+  border-radius: 999px;
+  padding: 9px 14px;
+  color: #087ef0;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
+.aje-article-page .aje-toc {
+  padding: 21px;
+}
+
+.aje-article-page .aje-toc-title {
+  margin-bottom: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #e1e9f2;
+  font-size: 19px;
+}
+
+.aje-article-page .aje-toc ol {
+  padding-left: 12px;
+  border-left: 1px solid #d5e1ec;
+  list-style: none;
+}
+
+.aje-article-page .aje-toc li {
+  position: relative;
+  margin: 0;
+}
+
+.aje-article-page .aje-toc li::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd7e4;
+}
+
+.aje-article-page .aje-toc li:first-child::before {
+  background: #168bff;
+}
+
+.aje-article-page .aje-toc a {
+  display: block;
+  padding: 7px 0 7px 9px;
+  color: #40536b;
+  line-height: 1.55;
+  text-decoration: none;
+}
+
+.aje-article-page .aje-toc li:first-child a {
+  color: #087ef0;
+  font-weight: 800;
+}
+
+.aje-related-list {
+  display: grid;
+  gap: 16px;
+}
+
+.aje-related-item {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 12px;
+  color: #17263b;
+  text-decoration: none;
+}
+
+.aje-related-item img {
+  width: 82px;
+  height: 62px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.aje-related-item strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.aje-related-item small {
+  display: block;
+  margin-top: 4px;
+  color: #607289;
+  font-size: 11px;
+}
+
 @media (max-width: 1080px) {
   .aje-grid-4,
   .aje-post-grid {
@@ -821,12 +1372,33 @@ img {
     grid-template-columns: minmax(0, var(--aje-content-width));
   }
 
+  .aje-article-page .aje-article-layout {
+    grid-template-columns: minmax(0, 680px) minmax(240px, 280px);
+    gap: 32px;
+  }
+
   .aje-article-aside {
     position: static;
   }
 
   .aje-latest-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .aje-article-page .aje-article-layout {
+    grid-template-columns: minmax(0, 680px);
+    justify-content: center;
+  }
+
+  .aje-article-page .aje-article-aside {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aje-related-box {
+    grid-column: 1 / -1;
   }
 }
 
@@ -911,6 +1483,44 @@ img {
 
   .aje-article-layout {
     width: min(100% - 32px, var(--aje-content-width));
+  }
+
+  .aje-article-site-header-inner {
+    grid-template-columns: minmax(0, 1fr) 42px;
+    width: min(100% - 32px, 680px);
+    min-height: 76px;
+  }
+
+  .aje-article-logo {
+    font-size: 13px;
+  }
+
+  .aje-article-nav {
+    display: none;
+  }
+
+  .aje-article-page .aje-article-layout {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100% - 32px, 680px);
+    padding-top: 24px;
+  }
+
+  .aje-article-page .aje-article-header h1 {
+    font-size: 30px;
+  }
+
+  .aje-article-lead,
+  .aje-article-lead .wp-block-post-excerpt__excerpt {
+    font-size: 16px;
+  }
+
+  .aje-article-page .aje-article-aside {
+    position: static;
+    grid-template-columns: 1fr;
+  }
+
+  .aje-related-box {
+    grid-column: auto;
   }
 
   .aje-prose {

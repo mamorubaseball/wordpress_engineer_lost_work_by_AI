@@ -46,7 +46,6 @@
           <!-- wp:group {"className":"aje-post-card-body","layout":{"type":"default"}} --><div class="wp-block-group aje-post-card-body">
             <!-- wp:post-terms {"term":"category","fontSize":"small"} /-->
             <!-- wp:post-title {"isLink":true,"level":3} /-->
-            <!-- wp:post-excerpt {"moreText":""} /-->
             <!-- wp:post-date {"fontSize":"small"} /-->
           </div><!-- /wp:group -->
         </div><!-- /wp:group -->
@@ -58,14 +57,13 @@
     <!-- wp:group {"anchor":"latest","className":"aje-section aje-latest-section","layout":{"type":"default"}} -->
     <div id="latest" class="wp-block-group aje-section aje-latest-section"><div class="aje-section-inner">
       <!-- wp:html --><div class="aje-section-heading"><h2>最新記事</h2><a href="/blog/">すべての記事 →</a></div><!-- /wp:html -->
-      <!-- wp:query {"queryId":2,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+      <!-- wp:query {"queryId":2,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false}} -->
       <div class="wp-block-query"><!-- wp:post-template {"className":"aje-post-grid aje-latest-grid"} -->
         <!-- wp:group {"className":"aje-post-card","layout":{"type":"default"}} --><div class="wp-block-group aje-post-card">
           <!-- wp:post-featured-image {"isLink":true} /-->
           <!-- wp:group {"className":"aje-post-card-body","layout":{"type":"default"}} --><div class="wp-block-group aje-post-card-body">
             <!-- wp:post-terms {"term":"category","fontSize":"small"} /-->
             <!-- wp:post-title {"isLink":true,"level":3} /-->
-            <!-- wp:post-excerpt {"moreText":""} /-->
             <!-- wp:post-date {"fontSize":"small"} /-->
           </div><!-- /wp:group -->
         </div><!-- /wp:group -->

@@ -110,6 +110,23 @@ function aje_codex_invite_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'aje_codex_invite_enqueue_assets', 20 );
 
 /**
+ * Send an admin notification for an invite request.
+ */
+function aje_send_codex_invite_notification( $email, $requested_at ) {
+	$admin_email = get_option( 'admin_email' );
+	$subject     = __( '【Codex招待】新しい招待リクエスト', 'ai-jobless-engineer' );
+	$message     = sprintf(
+		"Codex招待リクエストが届きました。\n\nメールアドレス：\n%s\n\n申請日時：\n%s\n\nWordPress管理画面から確認してください：\n%s\n",
+		$email,
+		$requested_at,
+		admin_url( 'edit.php?post_type=codex_invite' )
+	);
+	$headers     = array( 'Content-Type: text/plain; charset=UTF-8' );
+
+	return wp_mail( $admin_email, $subject, $message, $headers );
+}
+
+/**
  * Handle Codex Invite Ajax Form Submission
  */
 function aje_handle_codex_invite_ajax() {
@@ -193,18 +210,9 @@ function aje_handle_codex_invite_ajax() {
 	update_post_meta( $post_id, '_codex_requested_at', $now );
 	update_post_meta( $post_id, '_codex_invited_at', '' );
 
-	// 7. Send notification email to admin
-	$admin_email = get_option( 'admin_email' );
-	$subject     = __( '【Codex招待】新しい招待リクエスト', 'ai-jobless-engineer' );
-	$message     = sprintf(
-		"Codex招待リクエストが届きました。\n\nメールアドレス：\n%s\n\n申請日時：\n%s\n\nWordPress管理画面から確認してください：\n%s\n",
-		$email,
-		$now,
-		admin_url( 'edit.php?post_type=codex_invite' )
-	);
-	$headers     = array( 'Content-Type: text/plain; charset=UTF-8' );
-
-	wp_mail( $admin_email, $subject, $message, $headers );
+	// 7. Send notification email to admin and keep its result for troubleshooting.
+	$mail_sent = aje_send_codex_invite_notification( $email, $now );
+	update_post_meta( $post_id, '_codex_notification_status', $mail_sent ? 'sent' : 'failed' );
 
 	// 8. Send Success Response
 	wp_send_json_success( array(
@@ -262,6 +270,9 @@ function aje_codex_invite_custom_column( $column, $post_id ) {
 
 		case 'actions':
 			$status = get_post_meta( $post_id, '_codex_status', true ) ?: 'pending';
+			$resend_nonce = wp_create_nonce( 'aje_resend_notification_' . $post_id );
+			$resend_url = admin_url( 'edit.php?post_type=codex_invite&action=resend_notification&post_id=' . $post_id . '&_wpnonce=' . $resend_nonce );
+			echo '<a href="' . esc_url( $resend_url ) . '" class="button button-small">' . esc_html__( '通知メールを再送', 'ai-jobless-engineer' ) . '</a> ';
 			if ( 'invited' !== $status ) {
 				$nonce = wp_create_nonce( 'aje_mark_invited_' . $post_id );
 				$url = admin_url( 'edit.php?post_type=codex_invite&action=mark_invited&post_id=' . $post_id . '&_wpnonce=' . $nonce );
@@ -309,11 +320,47 @@ function aje_handle_mark_invited_action() {
 add_action( 'admin_init', 'aje_handle_mark_invited_action' );
 
 /**
+ * Handle the admin notification resend action.
+ */
+function aje_handle_resend_notification_action() {
+	if ( ! isset( $_GET['action'] ) || 'resend_notification' !== $_GET['action'] ) {
+		return;
+	}
+
+	$post_id = isset( $_GET['post_id'] ) ? (int) $_GET['post_id'] : 0;
+	if ( ! $post_id || ! check_admin_referer( 'aje_resend_notification_' . $post_id ) ) {
+		wp_die( esc_html__( '不正なアクセスです。', 'ai-jobless-engineer' ) );
+	}
+
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		wp_die( esc_html__( '権限がありません。', 'ai-jobless-engineer' ) );
+	}
+
+	$email        = get_post_meta( $post_id, '_codex_email', true ) ?: get_the_title( $post_id );
+	$requested_at = get_post_meta( $post_id, '_codex_requested_at', true ) ?: current_time( 'mysql' );
+	$mail_sent    = aje_send_codex_invite_notification( $email, $requested_at );
+	update_post_meta( $post_id, '_codex_notification_status', $mail_sent ? 'sent' : 'failed' );
+
+	wp_safe_redirect( admin_url( 'edit.php?post_type=codex_invite&notification=' . ( $mail_sent ? 'sent' : 'failed' ) ) );
+	exit;
+}
+add_action( 'admin_init', 'aje_handle_resend_notification_action' );
+
+/**
  * Admin notice for status update.
  */
 function aje_codex_admin_notices() {
-	if ( isset( $_GET['status_updated'] ) && 'codex_invite' === get_post_type() ) {
+	$is_invite_screen = isset( $_GET['post_type'] ) && 'codex_invite' === sanitize_key( wp_unslash( $_GET['post_type'] ) );
+	if ( isset( $_GET['status_updated'] ) && $is_invite_screen ) {
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'ステータスを「招待済み」に更新し、残り枠数を1減らしました。', 'ai-jobless-engineer' ) . '</p></div>';
+	}
+	if ( isset( $_GET['notification'] ) && $is_invite_screen ) {
+		$is_sent = 'sent' === $_GET['notification'];
+		$class   = $is_sent ? 'notice-success' : 'notice-error';
+		$message = $is_sent
+			? __( '管理者への通知メールを送信しました。', 'ai-jobless-engineer' )
+			: __( '通知メールを送信できませんでした。サーバーのメール設定を確認してください。', 'ai-jobless-engineer' );
+		echo '<div class="notice ' . esc_attr( $class ) . ' is-dismissible"><p>' . esc_html( $message ) . '</p></div>';
 	}
 }
 add_action( 'admin_notices', 'aje_codex_admin_notices' );
